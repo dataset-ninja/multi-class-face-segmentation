@@ -13,8 +13,8 @@ from dataset_tools.templates import (
 ##################################
 # * Before uploading to instance #
 ##################################
-PROJECT_NAME: str = None
-PROJECT_NAME_FULL: str = None
+PROJECT_NAME: str = "Multi-Class Face Segmentation"
+PROJECT_NAME_FULL: str = "Multi-Class Face Segmentation"
 HIDE_DATASET = True  # set False when 100% sure about repo quality
 
 ##################################
