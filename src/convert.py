@@ -1,13 +1,15 @@
-import supervisely as sly
 import os
-import numpy as np
-from dataset_tools.convert import unpack_if_archive
-import src.settings as s
 from urllib.parse import unquote, urlparse
-from supervisely.io.fs import get_file_name
-from cv2 import connectedComponents
 
+import numpy as np
+import supervisely as sly
+from cv2 import connectedComponents
+from dataset_tools.convert import unpack_if_archive
+from supervisely.io.fs import get_file_name
 from tqdm import tqdm
+
+import src.settings as s
+
 
 def download_dataset(teamfiles_dir: str) -> str:
     """Use it for large datasets to convert them on the instance"""
@@ -30,7 +32,7 @@ def download_dataset(teamfiles_dir: str) -> str:
             total=fsize,
             unit="B",
             unit_scale=True,
-        ) as pbar:        
+        ) as pbar:
             api.file.download(team_id, teamfiles_path, local_path, progress_cb=pbar)
         dataset_path = unpack_if_archive(local_path)
 
@@ -58,7 +60,8 @@ def download_dataset(teamfiles_dir: str) -> str:
 
         dataset_path = storage_dir
     return dataset_path
-    
+
+
 def count_files(path, extension):
     count = 0
     for root, dirs, files in os.walk(path):
@@ -66,16 +69,16 @@ def count_files(path, extension):
             if file.endswith(extension):
                 count += 1
     return count
-    
+
+
 def convert_and_upload_supervisely_project(
     api: sly.Api, workspace_id: int, project_name: str
 ) -> sly.ProjectInfo:
-    dataset_path = os.path.join("Multi-Class Face Segmentation","content","All_data")
+    dataset_path = os.path.join("Multi-Class Face Segmentation", "content", "All_data")
     images_folder = "image"
     masks_folder = "seg"
     masks_ext = ".png"
     batch_size = 50
-
 
     def create_ann(image_path):
         labels = []
@@ -102,7 +105,6 @@ def convert_and_upload_supervisely_project(
                     labels.append(curr_label)
 
         return sly.Annotation(img_size=(img_height, img_wight), labels=labels, img_tags=[tag])
-
 
     tag_id = sly.TagMeta("id", sly.TagValueType.ANY_STRING)
 
@@ -139,7 +141,6 @@ def convert_and_upload_supervisely_project(
 
     api.project.update_meta(project.id, meta.to_json())
 
-
     for ds_name in os.listdir(dataset_path):
         dataset = api.dataset.create(project.id, ds_name, change_name_if_conflict=True)
 
@@ -162,5 +163,3 @@ def convert_and_upload_supervisely_project(
 
             progress.iters_done_report(len(img_names_batch))
     return project
-
-

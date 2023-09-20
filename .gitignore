@@ -1,6 +1,8 @@
 .DS_Store
 __pycache__
 .venv/
+venv/
+Multi-Class Face Segmentation/
 tmp/
 APP_DATA/
 dataset_tools/
