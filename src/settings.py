@@ -21,10 +21,14 @@ HIDE_DATASET = True  # set False when 100% sure about repo quality
 # * After uploading to instance ##
 ##################################
 LICENSE: License = License.Unknown()
-APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Safety(),Industry.Surveillance()]
+APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Safety(), Industry.Surveillance()]
 CATEGORY: Category = Category.Safety(extra=Category.Surveillance())
 
-CV_TASKS: List[CVTask] = [CVTask.InstanceSegmentation(),CVTask.ObjectDetection(),CVTask.InstanceSegmentation()]
+CV_TASKS: List[CVTask] = [
+    CVTask.InstanceSegmentation(),
+    CVTask.ObjectDetection(),
+    CVTask.InstanceSegmentation(),
+]
 ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.InstanceSegmentation()]
 
 RELEASE_DATE: Optional[str] = None  # e.g. "YYYY-MM-DD"
@@ -34,7 +38,7 @@ if RELEASE_DATE is None:
 HOMEPAGE_URL: str = "https://www.kaggle.com/datasets/ashish2001/multiclass-face-segmentation"
 # e.g. "https://some.com/dataset/homepage"
 
-PREVIEW_IMAGE_ID: int = None
+PREVIEW_IMAGE_ID: int = 4615470
 # This should be filled AFTER uploading images to instance, just ID of any image.
 
 GITHUB_URL: str = "https://github.com/dataset-ninja/multi-class-face-segmentation"
@@ -43,7 +47,9 @@ GITHUB_URL: str = "https://github.com/dataset-ninja/multi-class-face-segmentatio
 ##################################
 ### * Optional after uploading ###
 ##################################
-DOWNLOAD_ORIGINAL_URL: Optional[Union[str, dict]] = "https://www.kaggle.com/datasets/ashish2001/multiclass-face-segmentation"
+DOWNLOAD_ORIGINAL_URL: Optional[
+    Union[str, dict]
+] = "https://www.kaggle.com/datasets/ashish2001/multiclass-face-segmentation"
 # Optional link for downloading original dataset (e.g. "https://some.com/dataset/download")
 
 CLASS2COLOR: Optional[Dict[str, List[str]]] = None
@@ -62,7 +68,7 @@ ORGANIZATION_NAME: Optional[Union[str, List[str]]] = None
 ORGANIZATION_URL: Optional[Union[str, List[str]]] = None
 
 # Set '__PRETEXT__' or '__POSTTEXT__' as a key with string value to add custom text. e.g. SLYTAGSPLIT = {'__POSTTEXT__':'some text}
-SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = None
+SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"__POSTTEXT__": ""}
 TAGS: Optional[List[str]] = None
 
 
