@@ -95,14 +95,10 @@ def convert_and_upload_supervisely_project(
         unique_pixels = np.unique(mask_np)
         for pixel in unique_pixels[1:]:
             obj_class = pixel_to_class[pixel]
-            mask = mask_np == pixel
-            ret, curr_mask = connectedComponents(mask.astype("uint8"), connectivity=8)
-            for i in range(1, ret):
-                obj_mask = curr_mask == i
-                curr_bitmap = sly.Bitmap(obj_mask)
-                if curr_bitmap.area > 50:
-                    curr_label = sly.Label(curr_bitmap, obj_class)
-                    labels.append(curr_label)
+            obj_mask = mask_np == pixel
+            curr_bitmap = sly.Bitmap(obj_mask)
+            curr_label = sly.Label(curr_bitmap, obj_class)
+            labels.append(curr_label)
 
         return sly.Annotation(img_size=(img_height, img_wight), labels=labels, img_tags=[tag])
 
@@ -113,19 +109,19 @@ def convert_and_upload_supervisely_project(
 
     pixel_to_class_name = {
         1: "face",
-        2: "left eyebrow",
-        3: "right eyebrow",
-        4: "left eye",
-        5: "right eye",
+        2: "left_eyebrow",
+        3: "right_eyebrow",
+        4: "left_eye",
+        5: "right_eye",
         6: "nose",
         7: "underlip",
         8: "tongue",
-        9: "upper lip",
+        9: "upper_lip",
         10: "hair",
-        11: "left eyelashes",
-        12: "right eyelashes",
-        13: "left ear",
-        14: "right ear",
+        11: "left_eyelashes",
+        12: "right_eyelashes",
+        13: "left_ear",
+        14: "right_ear",
         15: "headdress",
         16: "glasses",
         17: "head",
