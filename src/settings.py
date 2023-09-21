@@ -24,12 +24,8 @@ LICENSE: License = License.Unknown()
 APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Safety(), Industry.Surveillance()]
 CATEGORY: Category = Category.Safety(extra=Category.Surveillance())
 
-CV_TASKS: List[CVTask] = [
-    CVTask.InstanceSegmentation(),
-    CVTask.ObjectDetection(),
-    CVTask.InstanceSegmentation(),
-]
-ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.InstanceSegmentation()]
+CV_TASKS: List[CVTask] = [CVTask.SemanticSegmentation()]
+ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.SemanticSegmentation()]
 
 RELEASE_DATE: Optional[str] = None  # e.g. "YYYY-MM-DD"
 if RELEASE_DATE is None:
@@ -38,7 +34,7 @@ if RELEASE_DATE is None:
 HOMEPAGE_URL: str = "https://www.kaggle.com/datasets/ashish2001/multiclass-face-segmentation"
 # e.g. "https://some.com/dataset/homepage"
 
-PREVIEW_IMAGE_ID: int = 4615470
+PREVIEW_IMAGE_ID: int = 4661993
 # This should be filled AFTER uploading images to instance, just ID of any image.
 
 GITHUB_URL: str = "https://github.com/dataset-ninja/multi-class-face-segmentation"
