@@ -51,7 +51,7 @@ DOWNLOAD_ORIGINAL_URL: Optional[
 CLASS2COLOR: Optional[Dict[str, List[str]]] = None
 # If specific colors for classes are needed, fill this dict (e.g. {"class1": [255, 0, 0], "class2": [0, 255, 0]})
 
-# If you have more than the one paper, put the most relatable link as the first element of the list
+# If you have more than one paper, put the most relatable link as the first element of the list
 # Use dict key to specify name for a button
 PAPER: Optional[Union[str, List[str], Dict[str, str]]] = None
 BLOGPOST: Optional[Union[str, List[str], Dict[str, str]]] = None
@@ -59,12 +59,13 @@ REPOSITORY: Optional[Union[str, List[str], Dict[str, str]]] = None
 
 CITATION_URL: Optional[str] = None
 AUTHORS: Optional[List[str]] = ["Ashish Goswami"]
+AUTHORS_CONTACTS: Optional[List[str]] = ["https://github.com/alphacoder01"]
 
 ORGANIZATION_NAME: Optional[Union[str, List[str]]] = None
 ORGANIZATION_URL: Optional[Union[str, List[str]]] = None
 
 # Set '__PRETEXT__' or '__POSTTEXT__' as a key with string value to add custom text. e.g. SLYTAGSPLIT = {'__POSTTEXT__':'some text}
-SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"__POSTTEXT__": ""}
+SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = None
 TAGS: Optional[List[str]] = None
 
 
@@ -112,6 +113,7 @@ def get_settings():
     settings["repository"] = REPOSITORY
     settings["citation_url"] = CITATION_URL
     settings["authors"] = AUTHORS
+    settings["authors_contacts"] = AUTHORS_CONTACTS
     settings["organization_name"] = ORGANIZATION_NAME
     settings["organization_url"] = ORGANIZATION_URL
     settings["slytagsplit"] = SLYTAGSPLIT
